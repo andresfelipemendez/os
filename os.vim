@@ -11,7 +11,7 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
-edit boot_sect_print.asm
+edit bootsector_segmentation.asm
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -21,17 +21,18 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 19 - ((18 * winheight(0) + 27) / 55)
+let s:l = 26 - ((25 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 0
+26
+normal! 09|
 tabnext 1
+badd +19 boot_sect_print.asm
 badd +34 boot_sect_stack.asm
 badd +31 boot_sect_memory.asm
 badd +29 boot_sect_main.asm
-badd +0 boot_sect_print.asm
+badd +0 bootsector_segmentation.asm
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
